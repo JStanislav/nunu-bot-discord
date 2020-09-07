@@ -7,11 +7,11 @@ import os
 
 bot = commands.Bot(command_prefix='.', description="Bot para Summoners Rift")
 
-@bot.command()
-async def help(ctx):
-	embed = discord.Embed(title="Nunu help!",
-	 description=".generate - Genera 2 equipos al azar de los usuarios que estén en el canal de voz.")
-	await ctx.send(embed=embed)
+#@bot.command()
+#async def help(ctx):
+#	embed = discord.Embed(title="Nunu help!",
+#	 description=".generate - Genera 2 equipos al azar de los usuarios que estén en el canal de voz.")
+#	await ctx.send(embed=embed)
 
 
 @bot.command()
