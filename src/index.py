@@ -62,4 +62,7 @@ async def generate(ctx, opt):
 async def on_ready():
 	print('El bot está inicializado.')
 
-bot.run('NzUyMzA5NDE5NjM0NzIwNzk4.X1Vwvg.tLCz4BVyWoW3BysSVwdkal6iCY8')
+
+BOT_KEY = os.environ.get('BOT_KEY')
+
+bot.run(BOT_KEY)
