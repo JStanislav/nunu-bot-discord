@@ -41,11 +41,11 @@ async def generate(ctx, opt):
 		one_msg = ""
 		for player in team_one:
 			one_msg = one_msg + player.mention + "\n"
-		embed.add_field(name=":blue_circle: Team 1:", value=one_msg, inline=True)
+		embed.add_field(name=":blue_circle: Equipo Azul:", value=one_msg, inline=True)
 		two_msg = ""
 		for player in team_two:
 			two_msg = two_msg + player.mention + "\n"
-		embed.add_field(name=":red_circle: Team 2:", value=two_msg, inline=False)
+		embed.add_field(name=":red_circle: Equipo Rojo 2:", value=two_msg, inline=False)
 		embed.set_thumbnail(url="https://i.imgur.com/V6lhORZ.png")
 		
 		await ctx.send(embed=embed)
