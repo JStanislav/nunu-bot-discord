@@ -5,7 +5,9 @@ import time
 import datetime
 import os
 
-bot = commands.Bot(command_prefix='.', description="Bot para Summoners Rift")
+intents = discord.Intents().all()
+
+bot = commands.Bot(command_prefix='.', description="Bot para Summoners Rift", intents=intents)
 
 #@bot.command()
 #async def help(ctx):
@@ -16,18 +18,18 @@ bot = commands.Bot(command_prefix='.', description="Bot para Summoners Rift")
 
 @bot.command()
 async def generate(ctx, opt):
-	#voice_channel = discord.utils.get(ctx.message.guild.channels, name="General", type=discord.ChannelType.voice)
-	#voice_channel = discord.utils.get(ctx.message.guild.voice_channels, name="General")
 	if not opt == "random":
 		return
-	voice = ctx.message.author.voice
+	print()
+	voice = ctx.author.voice
 	if voice is not None:
 		members = voice.channel.members
-		if len(members) == 2:
-			return await ctx.send("Me estás jodiendo? El channel en el que estás sólo hay 2 personas")
+		if len(members) == 2 or len(members) == 1:
+			return await ctx.send("El channel en el que estás sólo hay 2 personas")
+
 		seed(time.time())
 		shuffle(members)
-		embed = discord.Embed(title="A TRYHARDEAR", description="-",
+		embed = discord.Embed(title="EQUIPOS GENERADOS ALEATORIAMENTE", description="-",
 					timestamp=datetime.datetime.utcnow(), color=discord.Color.red())
 		
 		team_one = []
@@ -37,6 +39,10 @@ async def generate(ctx, opt):
 				team_one.append(member)
 			else:
 				team_two.append(member)
+
+		print(ctx.author, "generated teams:")
+		print("Team Blue:", [x.name for x in team_one])
+		print("Team Red", [x.name for x in team_two])
 
 		one_msg = ""
 		for player in team_one:
@@ -49,11 +55,7 @@ async def generate(ctx, opt):
 		embed.set_thumbnail(url="https://i.imgur.com/V6lhORZ.png")
 		
 		await ctx.send(embed=embed)
-
 		
-		#for member, i in zip(members, range(len(members))):
-			
-		#	await ctx.send('Player '+str(i)+': '+ member.mention)
 		return
 	else:
 		await ctx.send(':x: Error. Tenés que estar en un canal de voz.', delete_after=1300)
